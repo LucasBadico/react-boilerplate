@@ -14,7 +14,7 @@ const get = require('lodash/get');
 const animateProgress = require('./helpers/progress');
 const addCheckmark = require('./helpers/checkmark');
 
-const { appLocales, DEFAULT_LOCALE } = require('../../app/i18n');
+const { appLocales, DEFAULT_LOCALE } = require('../../src/i18n');
 
 const babel = require('../../babel.config.js');
 const { presets } = babel;
@@ -26,7 +26,7 @@ plugins.push('react-intl');
 plugins = plugins.filter(p => p !== 'styled-components');
 
 // Glob to match all js files except test files
-const FILES_TO_PARSE = 'app/**/!(*.test).js';
+const FILES_TO_PARSE = 'src/**/!(*.test).js';
 
 const newLine = () => process.stdout.write('\n');
 
@@ -72,7 +72,7 @@ for (const locale of appLocales) {
   oldLocaleMappings[locale] = {};
   localeMappings[locale] = {};
   // File to store translation messages into
-  const translationFileName = `app/translations/${locale}.json`;
+  const translationFileName = `src/translations/${locale}.json`;
   try {
     // Parse the old translation message JSON files
     const messages = JSON.parse(fs.readFileSync(translationFileName));
@@ -131,7 +131,7 @@ memoryTask.then(files => {
     let translationFileName;
 
     for (const locale of appLocales) {
-      translationFileName = `app/translations/${locale}.json`;
+      translationFileName = `src/translations/${locale}.json`;
       localeTaskDone = task(
         `Writing translation messages for ${locale} to: ${translationFileName}`,
       );
