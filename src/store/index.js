@@ -7,12 +7,9 @@ import { routerMiddleware } from 'connected-react-router';
 import { createEpicMiddleware } from 'redux-observable';
 import createReducer from './create-reducers';
 import createEpic from './create-epics';
-// import createSagaMiddleware from 'redux-saga';
-// import createReducer from './reducers';
 
 export default function configureStore(initialState = {}, history) {
   let composeEnhancers = compose;
-  // const reduxSagaMonitorOptions = {};
 
   // If Redux Dev Tools and Saga Dev Tools Extensions are installed, enable them
   /* istanbul ignore next */
@@ -22,15 +19,12 @@ export default function configureStore(initialState = {}, history) {
       composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({});
   }
 
-  // const sagaMiddleware = createSagaMiddleware(reduxSagaMonitorOptions);
-
   // Create the store with two middlewares
   // 1. sagaMiddleware: Makes redux-sagas work
   // 2. routerMiddleware: Syncs the location/URL path to the state
   // const middlewares = [sagaMiddleware, routerMiddleware(history)];
   const epicMiddleware = createEpicMiddleware();
   const middlewares = [epicMiddleware, routerMiddleware(history)];
-  // const rootReducer = combineReducers(reducers)
   const enhancers = [applyMiddleware(...middlewares)];
 
   const store = createStore(

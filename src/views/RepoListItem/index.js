@@ -10,12 +10,12 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { FormattedNumber } from 'react-intl';
 
-import { makeSelectCurrentUser } from 'views/App/selectors';
+import { makeSelectCurrentUser } from 'store/selectors';
 import ListItem from 'components/ListItem';
-import IssueIcon from './IssueIcon';
-import IssueLink from './IssueLink';
-import RepoLink from './RepoLink';
-import Wrapper from './Wrapper';
+import IssueIcon from './components/IssueIcon';
+import IssueLink from './components/IssueLink';
+import RepoLink from './components/RepoLink';
+import Wrapper from './components/Wrapper';
 
 export function RepoListItem(props) {
   const { item } = props;

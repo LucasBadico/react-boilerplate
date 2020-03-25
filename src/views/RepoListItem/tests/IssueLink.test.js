@@ -3,7 +3,7 @@ import { render } from 'react-testing-library';
 import renderer from 'react-test-renderer';
 import 'jest-styled-components';
 
-import IssueLink from '../IssueLink';
+import IssueLink from '../components/IssueLink';
 
 describe('<IssueLink />', () => {
   it('should match the snapshot', () => {

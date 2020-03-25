@@ -1,6 +1,10 @@
-import { LOAD_REPOS, LOAD_REPOS_SUCCESS, LOAD_REPOS_ERROR } from '../constants';
+import {
+  LOAD_REPOS,
+  LOAD_REPOS_SUCCESS,
+  LOAD_REPOS_ERROR,
+} from 'store/constants';
 
-import { loadRepos, reposLoaded, repoLoadingError } from '../actions';
+import { loadRepos, reposLoaded, repoLoadingError } from 'store/actions';
 
 describe('App Actions', () => {
   describe('loadRepos', () => {

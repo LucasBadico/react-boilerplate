@@ -8,7 +8,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import H1 from 'components/H1';
-import messages from './messages';
+import messages from './translations';
 
 export default function NotFound() {
   return (

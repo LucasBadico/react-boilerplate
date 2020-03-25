@@ -1,12 +1,5 @@
 import { ofType } from 'redux-observable';
-import {
-  // filter,
-  mapTo,
-  switchMap,
-  // mergeMap,
-  map,
-  // flatMap,
-} from 'rxjs/operators';
+import { mapTo, switchMap, map } from 'rxjs/operators';
 import { fetchData } from '../../utils/fetch-data';
 
 export const fetchAccounts = action$ =>
@@ -21,7 +14,6 @@ export const fetchAccounts = action$ =>
           on: 'list',
           data: response,
         })),
-        // flatMap(from)
       ),
     ),
   );

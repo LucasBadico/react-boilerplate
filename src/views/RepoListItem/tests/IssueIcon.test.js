@@ -3,7 +3,7 @@ import { render } from 'react-testing-library';
 import renderer from 'react-test-renderer';
 import 'jest-styled-components';
 
-import IssueIcon from '../IssueIcon';
+import IssueIcon from '../components/IssueIcon';
 
 describe('<IssueIcon />', () => {
   it('should match the snapshot', () => {

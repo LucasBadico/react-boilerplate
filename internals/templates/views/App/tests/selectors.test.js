@@ -1,4 +1,4 @@
-import { makeSelectLocation } from 'views/App/selectors';
+import { makeSelectLocation } from 'store/selectors';
 
 describe('makeSelectLocation', () => {
   it('should select the location', () => {

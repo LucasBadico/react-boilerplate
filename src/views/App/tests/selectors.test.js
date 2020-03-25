@@ -5,7 +5,7 @@ import {
   makeSelectError,
   makeSelectRepos,
   makeSelectLocation,
-} from '../selectors';
+} from 'store/selectors';
 
 describe('selectGlobal', () => {
   it('should select the global state', () => {

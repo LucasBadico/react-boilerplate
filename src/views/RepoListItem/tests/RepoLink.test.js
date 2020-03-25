@@ -3,7 +3,7 @@ import { render } from 'react-testing-library';
 import renderer from 'react-test-renderer';
 import 'jest-styled-components';
 
-import RepoLink from '../RepoLink';
+import RepoLink from '../components/RepoLink';
 
 describe('<RepoLink />', () => {
   it('should match the snapshot', () => {

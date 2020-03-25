@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-testing-library';
 
-import Section from '../Section';
+import Section from '../components/Section';
 
 describe('<Section />', () => {
   it('should render an <section> tag', () => {

@@ -4,11 +4,12 @@
 
 import { put, takeLatest } from 'redux-saga/effects';
 
-import { LOAD_REPOS } from 'views/App/constants';
-import { reposLoaded, repoLoadingError } from 'views/App/actions';
+import { LOAD_REPOS } from 'store/constants';
+import { reposLoaded, repoLoadingError } from 'store/actions';
 
-import githubData, { getRepos } from '../saga';
-
+// import githubData, { getRepos } from '../saga';
+const githubData = {};
+const getRepos = function stub() {};
 const username = 'mxstbr';
 
 /* eslint-disable redux-saga/yield-effects */

@@ -8,10 +8,10 @@ import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 import { browserHistory } from 'react-router-dom';
 
+import { loadRepos } from 'store/actions';
+import configureStore from 'store';
 import { HomePage, mapDispatchToProps } from '../index';
-import { changeUsername } from '../actions';
-import { loadRepos } from '../../App/actions';
-import configureStore from '../../../store';
+import { changeUsername } from '../store/actions';
 
 describe('<HomePage />', () => {
   let store;
