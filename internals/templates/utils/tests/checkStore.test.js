@@ -13,9 +13,9 @@ describe('checkStore', () => {
       subscribe: () => {},
       getState: () => {},
       replaceReducer: () => {},
-      runSaga: () => {},
+      runEpics: () => {},
       injectedReducers: {},
-      injectedSagas: {},
+      injectedEpics: {},
     };
   });
 
@@ -25,9 +25,9 @@ describe('checkStore', () => {
 
   it('should throw if passed invalid store shape', () => {
     expect(() => checkStore({})).toThrow();
-    expect(() => checkStore({ ...store, injectedSagas: null })).toThrow();
+    expect(() => checkStore({ ...store, injectedEpics: null })).toThrow();
     expect(() => checkStore({ ...store, injectedReducers: null })).toThrow();
-    expect(() => checkStore({ ...store, runSaga: null })).toThrow();
+    expect(() => checkStore({ ...store, runEpics: null })).toThrow();
     expect(() => checkStore({ ...store, replaceReducer: null })).toThrow();
   });
 });

@@ -42,3 +42,4 @@ export const appReducer = (state = initialState, action) =>
       // skip default case
     }
   });
+export default appReducer;

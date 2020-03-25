@@ -12,7 +12,7 @@ export default function checkStore(store) {
     replaceReducer: isFunction,
     runEpics: isFunction,
     injectedReducers: isObject,
-    injectedSagas: isObject,
+    injectedEpics: isObject,
   };
   invariant(
     conformsTo(store, shape),

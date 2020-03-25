@@ -20,7 +20,6 @@ import {
   makeSelectError,
 } from 'store/selectors';
 import { loadRepos } from 'store/actions';
-import reducer from 'store/reducers';
 import H2 from 'components/H2';
 import ReposList from 'components/ReposList';
 import AtPrefix from './components/AtPrefix';
@@ -28,9 +27,10 @@ import CenteredSection from './components/CenteredSection';
 import Form from './components/Form';
 import Input from './components/Input';
 import Section from './components/Section';
-import messages from './translations/messages';
+import messages from './translations';
 import { changeUsername } from './store/actions';
 import { makeSelectUsername } from './store/selectors';
+import reducer from './store/reducers';
 // import saga from 'store/saga';
 
 const key = 'home';

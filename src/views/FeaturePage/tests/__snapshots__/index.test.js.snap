@@ -3,20 +3,20 @@
 exports[`<FeaturePage /> should render its heading 1`] = `
 <div>
   <h1
-    class="H1-tncdg6-0 hpAKSC"
+    class="H1-sc-52ruiv-0 gqLvkX"
   >
     <span>
       Features
     </span>
   </h1>
   <ul
-    class="List-sc-1aai6b-0 gbaodI"
+    class="List-bp84ie-0 kNxHKv"
   >
     <li
-      class="ListItem-sc-27v6xc-0 fixMwZ"
+      class="ListItem-sc-1a8vkly-0 bbOHFX"
     >
       <p
-        class="ListItemTitle-sc-1t4skn3-0 fWjsMZ"
+        class="ListItemTitle-maznmf-0 bNWTIN"
       >
         <span>
           Quick scaffolding
@@ -24,16 +24,16 @@ exports[`<FeaturePage /> should render its heading 1`] = `
       </p>
       <p>
         <span>
-          Automate the creation of components, containers, routes, selectors
+          Automate the creation of components, views, routes, selectors
   and sagas - and their tests - right from the CLI!
         </span>
       </p>
     </li>
     <li
-      class="ListItem-sc-27v6xc-0 fixMwZ"
+      class="ListItem-sc-1a8vkly-0 bbOHFX"
     >
       <p
-        class="ListItemTitle-sc-1t4skn3-0 fWjsMZ"
+        class="ListItemTitle-maznmf-0 bNWTIN"
       >
         <span>
           Instant feedback
@@ -51,10 +51,10 @@ exports[`<FeaturePage /> should render its heading 1`] = `
       </p>
     </li>
     <li
-      class="ListItem-sc-27v6xc-0 fixMwZ"
+      class="ListItem-sc-1a8vkly-0 bbOHFX"
     >
       <p
-        class="ListItemTitle-sc-1t4skn3-0 fWjsMZ"
+        class="ListItemTitle-maznmf-0 bNWTIN"
       >
         <span>
           Industry-standard routing
@@ -72,10 +72,10 @@ exports[`<FeaturePage /> should render its heading 1`] = `
       </p>
     </li>
     <li
-      class="ListItem-sc-27v6xc-0 fixMwZ"
+      class="ListItem-sc-1a8vkly-0 bbOHFX"
     >
       <p
-        class="ListItemTitle-sc-1t4skn3-0 fWjsMZ"
+        class="ListItemTitle-maznmf-0 bNWTIN"
       >
         <span>
           Offline-first
@@ -91,10 +91,10 @@ exports[`<FeaturePage /> should render its heading 1`] = `
       </p>
     </li>
     <li
-      class="ListItem-sc-27v6xc-0 fixMwZ"
+      class="ListItem-sc-1a8vkly-0 bbOHFX"
     >
       <p
-        class="ListItemTitle-sc-1t4skn3-0 fWjsMZ"
+        class="ListItemTitle-maznmf-0 bNWTIN"
       >
         <span>
           Complete i18n Standard Internationalization & Pluralization
