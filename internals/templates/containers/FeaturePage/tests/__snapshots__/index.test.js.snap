@@ -10,13 +10,13 @@ exports[`<FeaturePage /> should render its heading 1`] = `
     </span>
   </h1>
   <ul
-    class="List-bp84ie-0 kNxHKv"
+    class="List-sc-16y04pe-0 hKfuAU"
   >
     <li
-      class="ListItem-sc-1a8vkly-0 bbOHFX"
+      class="ListItem-sc-9d7v6-0 jITrDo"
     >
       <p
-        class="ListItemTitle-maznmf-0 bNWTIN"
+        class="ListItemTitle-sc-1j7rdue-0 dCEzbI"
       >
         <span>
           Quick scaffolding
@@ -30,10 +30,10 @@ exports[`<FeaturePage /> should render its heading 1`] = `
       </p>
     </li>
     <li
-      class="ListItem-sc-1a8vkly-0 bbOHFX"
+      class="ListItem-sc-9d7v6-0 jITrDo"
     >
       <p
-        class="ListItemTitle-maznmf-0 bNWTIN"
+        class="ListItemTitle-sc-1j7rdue-0 dCEzbI"
       >
         <span>
           Instant feedback
@@ -51,10 +51,10 @@ exports[`<FeaturePage /> should render its heading 1`] = `
       </p>
     </li>
     <li
-      class="ListItem-sc-1a8vkly-0 bbOHFX"
+      class="ListItem-sc-9d7v6-0 jITrDo"
     >
       <p
-        class="ListItemTitle-maznmf-0 bNWTIN"
+        class="ListItemTitle-sc-1j7rdue-0 dCEzbI"
       >
         <span>
           Industry-standard routing
@@ -72,10 +72,10 @@ exports[`<FeaturePage /> should render its heading 1`] = `
       </p>
     </li>
     <li
-      class="ListItem-sc-1a8vkly-0 bbOHFX"
+      class="ListItem-sc-9d7v6-0 jITrDo"
     >
       <p
-        class="ListItemTitle-maznmf-0 bNWTIN"
+        class="ListItemTitle-sc-1j7rdue-0 dCEzbI"
       >
         <span>
           Offline-first
@@ -91,10 +91,10 @@ exports[`<FeaturePage /> should render its heading 1`] = `
       </p>
     </li>
     <li
-      class="ListItem-sc-1a8vkly-0 bbOHFX"
+      class="ListItem-sc-9d7v6-0 jITrDo"
     >
       <p
-        class="ListItemTitle-maznmf-0 bNWTIN"
+        class="ListItemTitle-sc-1j7rdue-0 dCEzbI"
       >
         <span>
           Complete i18n Standard Internationalization & Pluralization
