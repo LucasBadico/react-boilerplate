@@ -8,22 +8,22 @@ exports[`<RepoListItem /> should render a ListItem 1`] = `
     class="Item-b0mtxg-0 gawfDc"
   >
     <div
-      class="Wrapper-uvayh3-0 ijVVLl"
+      class="Wrapper-sc-1qoij9c-0 bWJcmN"
     >
       <a
-        class="A-sc-171ufkp-0 RepoLink-z281fv-0 gUHGvZ"
+        class="A-sc-171ufkp-0 RepoLink-qtyxlh-0 gWpYFJ"
         href="https://github.com/react-boilerplate/react-boilerplate"
         target="_blank"
       >
         mxstbr/react-boilerplate
       </a>
       <a
-        class="A-sc-171ufkp-0 IssueLink-sc-1m0dpuo-0 hqNTfj"
+        class="A-sc-171ufkp-0 IssueLink-sc-1y14zbm-0 elcTaR"
         href="https://github.com/react-boilerplate/react-boilerplate/issues"
         target="_blank"
       >
         <svg
-          class="IssueIcon-sc-1hidbjd-0 giatgx"
+          class="IssueIcon-w7zc5y-0 iCqfIW"
           height="1em"
           width="0.875em"
         >

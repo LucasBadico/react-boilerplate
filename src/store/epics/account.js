@@ -20,9 +20,29 @@ export const fetchAccounts = action$ =>
 
 export const openModal = action$ =>
   action$.pipe(
-    ofType('WILL_LOAD_LIST'),
+    ofType('LOAD_REPOS'),
     mapTo({
       type: 'OPEN_FORM',
       form: 'list',
+    }),
+  );
+
+export const getRepos = (action$, state$) =>
+  action$.pipe(
+    ofType('LOAD_REPOS_'),
+    switchMap(() => {
+      const { username } = state$.value.home;
+      if (!username) {
+        throw new Error('NoUsernameProvided');
+      }
+      return fetchData({
+        url: `https://api.github.com/users/${username}/repos?type=all&sort=updated`,
+      }).pipe(
+        map(({ response }) => ({
+          type: 'LOAD_REPOS_SUCCESS',
+          username,
+          repos: response,
+        })),
+      );
     }),
   );

@@ -1,12 +1,13 @@
 /**
  * Create the store with dynamic reducers
  */
-
+import { BehaviorSubject } from 'rxjs';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'connected-react-router';
-import { createEpicMiddleware } from 'redux-observable';
+import { createEpicMiddleware, ofType } from 'redux-observable';
+import { mergeMap, takeUntil } from 'rxjs/operators';
 import createReducer from './create-reducers';
-import createEpic from './create-epics';
+import createEpics from './create-epics';
 
 export default function configureStore(initialState = {}, history) {
   let composeEnhancers = compose;
@@ -33,7 +34,17 @@ export default function configureStore(initialState = {}, history) {
     composeEnhancers(...enhancers),
   );
   // Extensions
-  store.runEpics = epicMiddleware.run;
+  const rootEpic$ = new BehaviorSubject(createEpics());
+  const hotReloadingEpic = (action$, ...rest) =>
+    rootEpic$.pipe(
+      mergeMap(epic =>
+        epic(action$, ...rest).pipe(
+          takeUntil(action$.pipe(ofType('EPIC_END'))),
+        ),
+      ),
+    );
+  epicMiddleware.run(hotReloadingEpic);
+  store.runEpics = injectedEpic => rootEpic$.next(injectedEpic);
   store.injectedReducers = {}; // Reducer registry
   store.injectedEpics = {}; // Epic registry
 
@@ -45,7 +56,7 @@ export default function configureStore(initialState = {}, history) {
     });
 
     module.hot.accept('./epics', () => {
-      store.replaceReducer(createEpic(store.injectedEpics));
+      store.replaceReducer(createEpics(store.injectedEpics));
     });
   }
 

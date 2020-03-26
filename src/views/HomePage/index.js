@@ -13,7 +13,7 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
 import { useInjectReducer } from 'utils/injectReducer';
-// import { useInjectSaga } from 'utils/injectSaga';
+import { useInjectEpic } from 'utils/injectEpic';
 import {
   makeSelectRepos,
   makeSelectLoading,
@@ -31,7 +31,7 @@ import messages from './translations';
 import { changeUsername } from './store/actions';
 import { makeSelectUsername } from './store/selectors';
 import reducer from './store/reducers';
-// import saga from 'store/saga';
+import epic from './store/epics';
 
 const key = 'home';
 
@@ -44,7 +44,7 @@ export function HomePage({
   onChangeUsername,
 }) {
   useInjectReducer({ key, reducer });
-  // useInjectSaga({ key, saga });
+  useInjectEpic({ key, epic });
 
   useEffect(() => {
     // When initial state username is not null, submit the form to load repos
