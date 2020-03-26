@@ -18,15 +18,15 @@ describe('configureStore', () => {
     });
   });
 
-  describe('injectedSagas', () => {
+  describe('injectedEpics', () => {
     it('should contain an object for sagas', () => {
-      expect(typeof store.injectedSagas).toBe('object');
+      expect(typeof store.injectedEpics).toBe('object');
     });
   });
 
-  describe('runSaga', () => {
-    it('should contain a hook for `sagaMiddleware.run`', () => {
-      expect(typeof store.runSaga).toBe('function');
+  describe('runEpics', () => {
+    it('should contain a hook for `epicMiddleware.run`', () => {
+      expect(typeof store.runEpics).toBe('function');
     });
   });
 });

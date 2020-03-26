@@ -9,72 +9,74 @@ const allowedModes = [RESTART_ON_REMOUNT, DAEMON, ONCE_TILL_UNMOUNT];
 const checkKey = key =>
   invariant(
     isString(key) && !isEmpty(key),
-    '(src/utils...) injectSaga: Expected `key` to be a non empty string',
+    '(src/utils...) injectEpic: Expected `key` to be a non empty string',
   );
 
 const checkDescriptor = descriptor => {
   const shape = {
-    saga: isFunction,
+    epic: isFunction,
     mode: mode => isString(mode) && allowedModes.includes(mode),
   };
   invariant(
     conformsTo(descriptor, shape),
-    '(src/utils...) injectSaga: Expected a valid saga descriptor',
+    '(src/utils...) injectEpic: Expected a valid epic descriptor',
   );
 };
 
-export function injectSagaFactory(store, isValid) {
-  return function injectSaga(key, descriptor = {}, args) {
+export function injectEpicFactory(store, isValid) {
+  return function injectEpic(key, descriptor = {}, args) {
     if (!isValid) checkStore(store);
-
     const newDescriptor = {
       ...descriptor,
       mode: descriptor.mode || DAEMON,
     };
-    const { saga, mode } = newDescriptor;
+    const { epic, mode } = newDescriptor;
 
     checkKey(key);
     checkDescriptor(newDescriptor);
 
-    let hasSaga = Reflect.has(store.injectedSagas, key);
+    let hasEpic = Reflect.has(store.injectedEpics, key);
 
     if (process.env.NODE_ENV !== 'production') {
-      const oldDescriptor = store.injectedSagas[key];
+      const oldDescriptor = store.injectedEpics[key];
       // enable hot reloading of daemon and once-till-unmount sagas
-      if (hasSaga && oldDescriptor.saga !== saga) {
-        oldDescriptor.task.cancel();
-        hasSaga = false;
+      if (hasEpic && oldDescriptor.epic !== epic) {
+        // TODO: how stop epic process
+        oldDescriptor.cancel();
+        // store.dispatch({ type: 'EPIC_END' });
+        hasEpic = false;
       }
     }
 
     if (
-      !hasSaga ||
-      (hasSaga && mode !== DAEMON && mode !== ONCE_TILL_UNMOUNT)
+      !hasEpic ||
+      (hasEpic && mode !== DAEMON && mode !== ONCE_TILL_UNMOUNT)
     ) {
       /* eslint-disable no-param-reassign */
-      store.injectedSagas[key] = {
+      store.injectedEpics[key] = {
         ...newDescriptor,
-        task: store.runSaga(saga, args),
+        task: store.runEpics(epic, args),
+        cancel: () => null,
       };
       /* eslint-enable no-param-reassign */
     }
   };
 }
 
-export function ejectSagaFactory(store, isValid) {
-  return function ejectSaga(key) {
+export function ejectEpicFactory(store, isValid) {
+  return function ejectEpic(key) {
     if (!isValid) checkStore(store);
 
     checkKey(key);
 
-    if (Reflect.has(store.injectedSagas, key)) {
-      const descriptor = store.injectedSagas[key];
+    if (Reflect.has(store.injectedEpics, key)) {
+      const descriptor = store.injectedEpics[key];
       if (descriptor.mode && descriptor.mode !== DAEMON) {
-        descriptor.task.cancel();
+        descriptor.cancel();
         // Clean up in production; in development we need `descriptor.saga` for hot reloading
         if (process.env.NODE_ENV === 'production') {
           // Need some value to be able to detect `ONCE_TILL_UNMOUNT` sagas in `injectSaga`
-          store.injectedSagas[key] = 'done'; // eslint-disable-line no-param-reassign
+          store.injectedEpics[key] = 'done'; // eslint-disable-line no-param-reassign
         }
       }
     }
@@ -85,7 +87,7 @@ export default function getInjectors(store) {
   checkStore(store);
 
   return {
-    injectSaga: injectSagaFactory(store, true),
-    ejectSaga: ejectSagaFactory(store, true),
+    injectEpic: injectEpicFactory(store, true),
+    ejectEpic: ejectEpicFactory(store, true),
   };
 }

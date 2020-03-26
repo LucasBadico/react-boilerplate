@@ -2,7 +2,7 @@ import React from 'react';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import { ReactReduxContext } from 'react-redux';
 
-import getInjectors from './sagaInjectors';
+import getInjectors from './epicInjectors';
 
 /**
  * Dynamically injects a saga, passes component's props as saga arguments
@@ -16,13 +16,13 @@ import getInjectors from './sagaInjectors';
  *   - constants.ONCE_TILL_UNMOUNT — behaves like 'RESTART_ON_REMOUNT' but never runs it again.
  *
  */
-export default ({ key, saga, mode }) => WrappedComponent => {
-  class InjectSaga extends React.Component {
+export default ({ key, epic, mode }) => WrappedComponent => {
+  class InjectEpic extends React.Component {
     static WrappedComponent = WrappedComponent;
 
     static contextType = ReactReduxContext;
 
-    static displayName = `withSaga(${WrappedComponent.displayName ||
+    static displayName = `withEpic(${WrappedComponent.displayName ||
       WrappedComponent.name ||
       'Component'})`;
 
@@ -31,11 +31,11 @@ export default ({ key, saga, mode }) => WrappedComponent => {
 
       this.injectors = getInjectors(context.store);
 
-      this.injectors.injectSaga(key, { saga, mode }, this.props);
+      this.injectors.injectEpic(key, { epic, mode }, this.props);
     }
 
     componentWillUnmount() {
-      this.injectors.ejectSaga(key);
+      this.injectors.ejectEpic(key);
     }
 
     render() {
@@ -43,19 +43,19 @@ export default ({ key, saga, mode }) => WrappedComponent => {
     }
   }
 
-  return hoistNonReactStatics(InjectSaga, WrappedComponent);
+  return hoistNonReactStatics(InjectEpic, WrappedComponent);
 };
 
-const useInjectSaga = ({ key, saga, mode }) => {
+const useInjectEpic = ({ key, epic, mode }) => {
   const context = React.useContext(ReactReduxContext);
   React.useEffect(() => {
     const injectors = getInjectors(context.store);
-    injectors.injectSaga(key, { saga, mode });
+    injectors.injectEpic(key, { epic, mode });
 
     return () => {
-      injectors.ejectSaga(key);
+      injectors.ejectEpic(key);
     };
   }, []);
 };
 
-export { useInjectSaga };
+export { useInjectEpic };
