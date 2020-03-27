@@ -1,9 +1,11 @@
 <img src="https://raw.githubusercontent.com/react-boilerplate/react-boilerplate-brand/master/assets/banner-metal-optimized.jpg" alt="react boilerplate banner" align="center" />
-
+  <p>
+    <img title="logo" src="./docs/logo-redux-observables.png" alt="redux-observables logo" align="center" style="width: 120px; margin-top: -127px;"/>
+  </p>
 <br />
 
 <div align="center"><strong>Start your next react project in seconds</strong></div>
-<div align="center">A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices</div>
+<div align="center">A highly scalable, offline-first foundation with the best DX and a focus on performance and ~~best practices~~, this version was based on the original <a href="https://github.com/react-boilerplate/react-boilerplate">React-boilerplate</a> but we make some changes on the choices made by the original developers.</div>
 
 <br />
 
@@ -46,14 +48,18 @@
 <br />
 
 <div align="center">
-  <sub>Created by <a href="https://twitter.com/mxstbr">Max Stoiber</a> and maintained with ❤️ by an amazing <a href="https://github.com/orgs/react-boilerplate/people">team of developers</a>.</sub>
+  <sub>Created by <a href="https://twitter.com/mxstbr">Max Stoiber</a>, changes made by <a href="https://github.com.LucasBadico">Lucas Badico</a>.</sub>
+
+  <p> 
+  Take a look in the original project <a href="https://github.com/react-boilerplate/react-boilerplate">React-boilerplate</a>.
+  </p>
 </div>
 
 ## Features
 
 <dl>
   <dt>Quick scaffolding</dt>
-  <dd>Create components, containers, routes, selectors and sagas - and their tests - right from the CLI!</dd>
+  <dd>Create components, views, routes, selectors and epics - and their tests - right from the CLI!</dd>
 
   <dt>Instant feedback</dt>
   <dd>Enjoy the best DX (Developer eXperience) and code your app at the speed of thought! Your saved changes to the CSS and JS are reflected instantaneously without refreshing the page. Preserve application state even when you update something in the underlying code!</dd>
