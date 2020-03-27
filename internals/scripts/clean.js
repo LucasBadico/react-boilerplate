@@ -6,45 +6,46 @@ if (!shell.which('git')) {
   shell.exit(1);
 }
 
-if (!shell.test('-e', 'internals/templates')) {
-  shell.echo('The example is deleted already.');
+if (shell.test('-e', 'example-app')) {
+  shell.echo('The example-app already exist, clean already run.');
   shell.exit(1);
 }
+shell.cp('src/tests/i18n.test.js', 'internals/templates/tests/i18n.test.js');
 
 process.stdout.write('Cleanup started...');
 
 // Reuse existing LanguageProvider and i18n tests
 shell.mv(
-  'app/containers/LanguageProvider/tests',
-  'internals/templates/containers/LanguageProvider',
+  'src/views/LanguageProvider/tests',
+  'internals/templates/views/LanguageProvider',
 );
-shell.cp('app/tests/i18n.test.js', 'internals/templates/tests/i18n.test.js');
+shell.cp('-r', 'src', 'example-app');
 
 // Cleanup components/
-shell.rm('-rf', 'app/components/*');
+shell.rm('-rf', 'src/components/*');
 
-// Handle containers/
-shell.rm('-rf', 'app/containers');
-shell.mv('internals/templates/containers', 'app');
+// Handle views/
+shell.rm('-rf', 'src/views');
+shell.mv('internals/templates/views', 'src');
 
 // Handle tests/
-shell.mv('internals/templates/tests', 'app');
+shell.mv('internals/templates/tests', 'src');
 
 // Handle translations/
-shell.rm('-rf', 'app/translations');
-shell.mv('internals/templates/translations', 'app');
+shell.rm('-rf', 'src/translations');
+shell.mv('internals/templates/translations', 'src');
 
 // Handle utils/
-shell.rm('-rf', 'app/utils');
-shell.mv('internals/templates/utils', 'app');
+shell.rm('-rf', 'src/utils');
+shell.mv('internals/templates/utils', 'src');
 
 // Replace the files in the root app/ folder
-shell.cp('internals/templates/app.js', 'app/app.js');
-shell.cp('internals/templates/global-styles.js', 'app/global-styles.js');
-shell.cp('internals/templates/i18n.js', 'app/i18n.js');
-shell.cp('internals/templates/index.html', 'app/index.html');
-shell.cp('internals/templates/reducers.js', 'app/reducers.js');
-shell.cp('internals/templates/configureStore.js', 'app/configureStore.js');
+shell.cp('internals/templates/app.js', 'src/app.js');
+shell.cp('internals/templates/global-styles.js', 'src/global-styles.js');
+shell.cp('internals/templates/i18n/index.js', 'src/i18n/index.js');
+shell.cp('internals/templates/index.html', 'src/index.html');
+shell.cp('internals/templates/store/reducers.js', 'src/store/reducers.js');
+shell.cp('internals/templates/store/index.js', 'src/store/index.js');
 
 // Remove the templates folder
 shell.rm('-rf', 'internals/templates');
@@ -52,12 +53,12 @@ shell.rm('-rf', 'internals/templates');
 addCheckMark();
 
 // Commit the changes
-if (
-  shell.exec('git add . --all && git commit -qm "Remove default example"')
-    .code !== 0
-) {
-  shell.echo('\nError: Git commit failed');
-  shell.exit(1);
-}
+// if (
+//   shell.exec('git add . --all && git commit -qm "Remove default example"')
+//     .code !== 0
+// ) {
+//   shell.echo('\nError: Git commit failed');
+//   shell.exit(1);
+// }
 
 shell.echo('\nCleanup done. Happy Coding!!!');

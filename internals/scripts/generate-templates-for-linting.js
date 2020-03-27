@@ -17,7 +17,7 @@ const addCheckmark = require('./helpers/checkmark');
 const xmark = require('./helpers/xmark');
 
 /**
- * Every generated component/container is preceded by this
+ * Every generated component/view is preceded by this
  * @type {string}
  */
 const { BACKUPFILE_EXTENSION } = require('../generators/index');
@@ -26,11 +26,11 @@ process.chdir(path.join(__dirname, '../generators'));
 
 const plop = nodePlop('./index.js');
 const componentGen = plop.getGenerator('component');
-const containerGen = plop.getGenerator('container');
+const viewGen = plop.getGenerator('view');
 const languageGen = plop.getGenerator('language');
 
 /**
- * Every generated component/container is preceded by this
+ * Every generated component/view is preceded by this
  * @type {string}
  */
 const NAMESPACE = 'RbGenerated';
@@ -103,7 +103,7 @@ function reportErrors(reason) {
 function runLintingOnDirectory(relativePath) {
   return new Promise((resolve, reject) => {
     shell.exec(
-      `npm run lint:eslint "app/${relativePath}/**/**.js"`,
+      `npm run lint:eslint "src/${relativePath}/**/**.js"`,
       {
         silent: true,
       },
@@ -146,7 +146,7 @@ function runLintingOnFile(filePath) {
 function removeDir(relativePath) {
   return new Promise((resolve, reject) => {
     try {
-      rimraf(path.join(__dirname, '/../../app/', relativePath), err => {
+      rimraf(path.join(__dirname, '/../../src/', relativePath), err => {
         if (err) throw err;
       });
       resolve(relativePath);
@@ -230,18 +230,18 @@ async function generateComponent({ name, memo }) {
 }
 
 /**
- * Test the container generator and rollback when successful
+ * Test the view generator and rollback when successful
  * @param {string} name - Container name
  * @param {string} type - Plop Action type
- * @returns {Promise<string>} - Relative path to the generated container
+ * @returns {Promise<string>} - Relative path to the generated view
  */
 async function generateContainer({ name, memo }) {
-  const targetFolder = 'containers';
+  const targetFolder = 'views';
   const componentName = `${NAMESPACE}Container${name}`;
   const relativePath = `${targetFolder}/${componentName}`;
-  const container = `container/${memo ? 'Pure' : 'NotPure'}`;
+  const view = `views/${memo ? 'Pure' : 'NotPure'}`;
 
-  await containerGen
+  await viewGen
     .runActions({
       name: componentName,
       memo,
@@ -252,16 +252,16 @@ async function generateContainer({ name, memo }) {
       wantLoadable: true,
     })
     .then(handleResult)
-    .then(feedbackToUser(`Generated '${container}'`))
+    .then(feedbackToUser(`Generated '${view}'`))
     .catch(reason => reportErrors(reason));
   await runLintingOnDirectory(relativePath)
-    .then(reportSuccess(`Linting test passed for '${container}'`))
+    .then(reportSuccess(`Linting test passed for '${view}'`))
     .catch(reason => reportErrors(reason));
   await removeDir(relativePath)
-    .then(feedbackToUser(`Cleanup '${container}'`))
+    .then(feedbackToUser(`Cleanup '${view}'`))
     .catch(reason => reportErrors(reason));
 
-  return container;
+  return view;
 }
 
 /**
@@ -275,7 +275,7 @@ async function generateComponents(components) {
 
     if (component.kind === 'component') {
       result = await generateComponent(component);
-    } else if (component.kind === 'container') {
+    } else if (component.kind === 'view') {
       result = await generateContainer(component);
     }
 
@@ -377,8 +377,8 @@ async function generateLanguage(language) {
   await generateComponents([
     { kind: 'component', name: 'Component', memo: false },
     { kind: 'component', name: 'MemoizedComponent', memo: true },
-    { kind: 'container', name: 'Container', memo: false },
-    { kind: 'container', name: 'MemoizedContainer', memo: true },
+    { kind: 'view', name: 'Container', memo: false },
+    { kind: 'view', name: 'MemoizedContainer', memo: true },
   ]).catch(reason => reportErrors(reason));
 
   await generateLanguage('fr').catch(reason => reportErrors(reason));

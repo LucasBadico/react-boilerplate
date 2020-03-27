@@ -8,7 +8,7 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 const componentGenerator = require('./component/index.js');
-const containerGenerator = require('./container/index.js');
+const viewGenerator = require('./views/index.js');
 const languageGenerator = require('./language/index.js');
 
 /**
@@ -19,15 +19,12 @@ const BACKUPFILE_EXTENSION = 'rbgen';
 
 module.exports = plop => {
   plop.setGenerator('component', componentGenerator);
-  plop.setGenerator('container', containerGenerator);
+  plop.setGenerator('view', viewGenerator);
   plop.setGenerator('language', languageGenerator);
   plop.addHelper('directory', comp => {
     try {
-      fs.accessSync(
-        path.join(__dirname, `../../app/containers/${comp}`),
-        fs.F_OK,
-      );
-      return `containers/${comp}`;
+      fs.accessSync(path.join(__dirname, `../../src/views/${comp}`), fs.F_OK);
+      return `views/${comp}`;
     } catch (e) {
       return `components/${comp}`;
     }
@@ -36,7 +33,7 @@ module.exports = plop => {
   plop.setActionType('prettify', (answers, config) => {
     const folderPath = `${path.join(
       __dirname,
-      '/../../app/',
+      '/../../src/',
       config.path,
       plop.getHelper('properCase')(answers.name),
       '**',

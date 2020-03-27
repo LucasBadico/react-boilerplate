@@ -3,7 +3,7 @@
  */
 
 import { browserHistory } from 'react-router';
-import configureStore from '../configureStore';
+import configureStore from 'store';
 
 describe('configureStore', () => {
   let store;
@@ -18,15 +18,15 @@ describe('configureStore', () => {
     });
   });
 
-  describe('injectedSagas', () => {
+  describe('injectedEpics', () => {
     it('should contain an object for sagas', () => {
-      expect(typeof store.injectedSagas).toBe('object');
+      expect(typeof store.injectedEpics).toBe('object');
     });
   });
 
-  describe('runSaga', () => {
+  describe('runEpics', () => {
     it('should contain a hook for `sagaMiddleware.run`', () => {
-      expect(typeof store.runSaga).toEqual('function');
+      expect(typeof store.runEpics).toEqual('function');
     });
   });
 });

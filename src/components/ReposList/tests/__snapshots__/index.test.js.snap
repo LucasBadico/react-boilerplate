@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ReposList /> should render the loading indicator when its loading 1`] = `
+<div
+  class="Wrapper-sc-3sn8rd-0 bvicjb"
+>
+  <ul
+    class="Ul-hv8xxy-0 iplVaM"
+  >
+    <div
+      class="Wrapper-itmkmt-0 lpmvpQ"
+    >
+      <div
+        class="Circle__CirclePrimitive-sc-7c46es-0 dhxAPQ"
+      />
+      <div
+        class="Circle__CirclePrimitive-sc-7c46es-0 gHFSmX"
+      />
+      <div
+        class="Circle__CirclePrimitive-sc-7c46es-0 eitTuQ"
+      />
+      <div
+        class="Circle__CirclePrimitive-sc-7c46es-0 hJaFIi"
+      />
+      <div
+        class="Circle__CirclePrimitive-sc-7c46es-0 cOwiqy"
+      />
+      <div
+        class="Circle__CirclePrimitive-sc-7c46es-0 eOEujY"
+      />
+      <div
+        class="Circle__CirclePrimitive-sc-7c46es-0 ellwNr"
+      />
+      <div
+        class="Circle__CirclePrimitive-sc-7c46es-0 grqfbj"
+      />
+      <div
+        class="Circle__CirclePrimitive-sc-7c46es-0 jwWqAs"
+      />
+      <div
+        class="Circle__CirclePrimitive-sc-7c46es-0 ejDVxw"
+      />
+      <div
+        class="Circle__CirclePrimitive-sc-7c46es-0 jqNByf"
+      />
+      <div
+        class="Circle__CirclePrimitive-sc-7c46es-0 fWnPQV"
+      />
+    </div>
+  </ul>
+</div>
+`;
+
+exports[`<ReposList /> should render the repositories if loading was successful 1`] = `
+<div
+  class="Wrapper-sc-3sn8rd-0 bvicjb"
+>
+  <ul
+    class="Ul-hv8xxy-0 iplVaM"
+  >
+    <li
+      class="Wrapper-wo3s8f-0 hXylGC"
+    >
+      <div
+        class="Item-b0mtxg-0 gawfDc"
+      >
+        <div
+          class="Wrapper-sc-17x4j6q-0 czjgno"
+        >
+          <a
+            class="A-sc-171ufkp-0 RepoLink-sc-1jhnabr-0 ietKYH"
+            href="https://github.com/react-boilerplate/react-boilerplate"
+            target="_blank"
+          >
+            react-boilerplate
+          </a>
+          <a
+            class="A-sc-171ufkp-0 IssueLink-tq5xc8-0 cZtNNo"
+            href="https://github.com/react-boilerplate/react-boilerplate/issues"
+            target="_blank"
+          >
+            <svg
+              class="IssueIcon-sc-1m3hk5r-0 fRYDiC"
+              height="1em"
+              width="0.875em"
+            >
+              <path
+                d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7S10.14 13.7 7 13.7 1.3 11.14 1.3 8s2.56-5.7 5.7-5.7m0-1.3C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7S10.86 1 7 1z m1 3H6v5h2V4z m0 6H6v2h2V10z"
+              />
+            </svg>
+            <span>
+              20
+            </span>
+          </a>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+`;
