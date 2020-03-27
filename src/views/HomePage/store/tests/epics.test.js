@@ -1,17 +1,9 @@
 /**
- * Tests for HomePage sagas
+ * Tests for HomePage epics
  */
 import { of } from 'rxjs';
-// import { TestScheduler } from 'rxjs/testing';
-// import { put, takeLatest } from 'redux-saga/effects';
+import { getRepos } from '../epics';
 
-// import { LOAD_REPOS } from 'store/constants';
-// import { repoLoadingError } from 'store/actions';
-
-// import githubData, { getRepos } from '../store/epics';
-import { getRepos } from '../store/epics';
-
-// const githubData = {};
 const username = 'mxstbr';
 
 /* eslint-disable redux-saga/yield-effects */
@@ -44,12 +36,3 @@ describe('getRepos Epic', () => {
 
   // TODO: add a case for request error
 });
-
-// describe('githubDataSaga Saga', () => {
-//   const githubDataSaga = githubData();
-
-//   it('should start task to watch for LOAD_REPOS action', () => {
-//     const takeLatestDescriptor = githubDataSaga.next().value;
-//     expect(takeLatestDescriptor).toEqual(takeLatest(LOAD_REPOS, getRepos));
-//   });
-// });

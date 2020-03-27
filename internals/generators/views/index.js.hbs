@@ -22,27 +22,27 @@ import { createStructuredSelector } from 'reselect';
 {{/if}}
 import { compose } from 'redux';
 
-{{#if wantSaga}}
-import { useInjectSaga } from 'utils/injectSaga';
+{{#if wantEpic}}
+import { useInjectEpic } from 'utils/injectEpic';
 {{/if}}
 {{#if wantActionsAndReducer}}
 import { useInjectReducer } from 'utils/injectReducer';
-import makeSelect{{properCase name}} from './selectors';
-import reducer from './reducer';
+import makeSelect{{properCase name}} from './store/selectors';
+import reducer from './store/reducers';
 {{/if}}
-{{#if wantSaga}}
-import saga from './saga';
+{{#if wantEpic}}
+import epic from './store/epics';
 {{/if}}
 {{#if wantMessages}}
-import messages from './messages';
+import messages from './translations';
 {{/if}}
 
 export function {{ properCase name }}() {
   {{#if wantActionsAndReducer}}
   useInjectReducer({ key: '{{ camelCase name }}', reducer });
   {{/if}}
-  {{#if wantSaga}}
-  useInjectSaga({ key: '{{ camelCase name }}', saga });
+  {{#if wantEpic}}
+  useInjectEpic({ key: '{{ camelCase name }}', epic });
   {{/if}}
 
   return (

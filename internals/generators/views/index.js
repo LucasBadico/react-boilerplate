@@ -5,7 +5,7 @@
 const componentExists = require('../utils/componentExists');
 
 module.exports = {
-  description: 'Add a container component',
+  description: 'Add a views component',
   prompts: [
     {
       type: 'input',
@@ -15,7 +15,7 @@ module.exports = {
       validate: value => {
         if (/.+/.test(value)) {
           return componentExists(value)
-            ? 'A component or container with this name already exists'
+            ? 'A component or views with this name already exists'
             : true;
         }
 
@@ -25,27 +25,26 @@ module.exports = {
     {
       type: 'confirm',
       name: 'memo',
-      default: false,
-      message: 'Do you want to wrap your component in React.memo?',
+      default: true,
+      message: 'Do you want to wrap your view in React.memo?',
     },
     {
       type: 'confirm',
       name: 'wantHeaders',
-      default: false,
+      default: true,
       message: 'Do you want headers?',
     },
     {
       type: 'confirm',
       name: 'wantActionsAndReducer',
       default: true,
-      message:
-        'Do you want an actions/constants/selectors/reducer tuple for this container?',
+      message: 'Do you want a store folder with tuple for this view?',
     },
     {
       type: 'confirm',
-      name: 'wantSaga',
+      name: 'wantEpic',
       default: true,
-      message: 'Do you want sagas for asynchronous flows? (e.g. fetching data)',
+      message: 'Do you want epics for asynchronous flows? (e.g. fetching data)',
     },
     {
       type: 'confirm',
@@ -59,6 +58,12 @@ module.exports = {
       default: true,
       message: 'Do you want to load resources asynchronously?',
     },
+    {
+      type: 'confirm',
+      name: 'wantSubComponents',
+      default: true,
+      message: 'Do you want a subfolder with components?',
+    },
   ],
   actions: data => {
     // Generate index.js and index.test.js
@@ -66,13 +71,13 @@ module.exports = {
       {
         type: 'add',
         path: '../../src/views/{{properCase name}}/index.js',
-        templateFile: './container/index.js.hbs',
+        templateFile: './views/index.js.hbs',
         abortOnFail: true,
       },
       {
         type: 'add',
         path: '../../src/views/{{properCase name}}/tests/index.test.js',
-        templateFile: './container/test.js.hbs',
+        templateFile: './views/test.js.hbs',
         abortOnFail: true,
       },
     ];
@@ -81,8 +86,8 @@ module.exports = {
     if (data.wantMessages) {
       actions.push({
         type: 'add',
-        path: '../../src/views/{{properCase name}}/messages.js',
-        templateFile: './container/messages.js.hbs',
+        path: '../../src/views/{{properCase name}}/translations/index.js',
+        templateFile: './views/messages.js.hbs',
         abortOnFail: true,
       });
     }
@@ -93,66 +98,68 @@ module.exports = {
       // Actions
       actions.push({
         type: 'add',
-        path: '../../src/views/{{properCase name}}/actions.js',
-        templateFile: './container/actions.js.hbs',
+        path: '../../src/views/{{properCase name}}/store/actions.js',
+        templateFile: './views/actions.js.hbs',
         abortOnFail: true,
       });
       actions.push({
         type: 'add',
-        path: '../../src/views/{{properCase name}}/tests/actions.test.js',
-        templateFile: './container/actions.test.js.hbs',
+        path: '../../src/views/{{properCase name}}/store/tests/actions.test.js',
+        templateFile: './views/actions.test.js.hbs',
         abortOnFail: true,
       });
 
       // Constants
       actions.push({
         type: 'add',
-        path: '../../src/views/{{properCase name}}/constants.js',
-        templateFile: './container/constants.js.hbs',
+        path: '../../src/views/{{properCase name}}/store/constants.js',
+        templateFile: './views/constants.js.hbs',
         abortOnFail: true,
       });
 
       // Selectors
       actions.push({
         type: 'add',
-        path: '../../src/views/{{properCase name}}/selectors.js',
-        templateFile: './container/selectors.js.hbs',
+        path: '../../src/views/{{properCase name}}/store/selectors.js',
+        templateFile: './views/selectors.js.hbs',
         abortOnFail: true,
       });
       actions.push({
         type: 'add',
-        path: '../../src/views/{{properCase name}}/tests/selectors.test.js',
-        templateFile: './container/selectors.test.js.hbs',
+        path:
+          '../../src/views/{{properCase name}}/store/tests/selectors.test.js',
+        templateFile: './views/selectors.test.js.hbs',
         abortOnFail: true,
       });
 
       // Reducer
       actions.push({
         type: 'add',
-        path: '../../src/views/{{properCase name}}/reducer.js',
-        templateFile: './container/reducer.js.hbs',
+        path: '../../src/views/{{properCase name}}/store/reducers.js',
+        templateFile: './views/reducer.js.hbs',
         abortOnFail: true,
       });
       actions.push({
         type: 'add',
-        path: '../../src/views/{{properCase name}}/tests/reducer.test.js',
-        templateFile: './container/reducer.test.js.hbs',
+        path:
+          '../../src/views/{{properCase name}}/store/tests/reducers.test.js',
+        templateFile: './views/reducer.test.js.hbs',
         abortOnFail: true,
       });
     }
 
-    // Sagas
-    if (data.wantSaga) {
+    // Epics
+    if (data.wantEpic) {
       actions.push({
         type: 'add',
-        path: '../../src/views/{{properCase name}}/saga.js',
-        templateFile: './container/saga.js.hbs',
+        path: '../../src/views/{{properCase name}}/store/epics.js',
+        templateFile: './views/epic.js.hbs',
         abortOnFail: true,
       });
       actions.push({
         type: 'add',
-        path: '../../src/views/{{properCase name}}/tests/saga.test.js',
-        templateFile: './container/saga.test.js.hbs',
+        path: '../../src/views/{{properCase name}}/store/tests/epics.test.js',
+        templateFile: './views/epic.test.js.hbs',
         abortOnFail: true,
       });
     }
@@ -162,6 +169,15 @@ module.exports = {
         type: 'add',
         path: '../../src/views/{{properCase name}}/Loadable.js',
         templateFile: './component/loadable.js.hbs',
+        abortOnFail: true,
+      });
+    }
+
+    if (data.wantSubComponents) {
+      actions.push({
+        type: 'add',
+        path: '../../src/views/{{properCase name}}/components/Section.js',
+        templateFile: './views/subcomponent.js.hbs',
         abortOnFail: true,
       });
     }

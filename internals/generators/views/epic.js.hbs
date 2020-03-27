@@ -1,0 +1,34 @@
+import createEpics from 'store/create-epics';
+// import { ofType } from 'redux-observable';
+// import { switchMap, map } from 'rxjs/operators';
+// import { fetchData } from 'utils/fetch-data';
+
+// TODO: please change the name of this function to describe 
+// NOTE_1: please change the name of this function 
+export const {{ camelCase name }}Epic = (action$, state$) => console.log('remove this console!', action$, state$);
+  /*
+  # Example of epic based o loadRepo from HomePage
+  action$.pipe(
+    ofType('LOAD_REPOS_REQUEST'), // is a standart actions to async process have REQUEST postfix
+    switchMap(() => {
+      const { username } = state$.value.home;
+      if (!username) {
+        throw new Error('NoUsernameProvided');
+      }
+      return fetchData({
+        url: `https://api.github.com/users/${username}/repos?type=all&sort=updated`,
+      }).pipe(
+        map(({ response }) => ({
+          type: 'LOAD_REPOS_SUCCESS',
+          username,
+          repos: response,
+        })),
+      );
+    }),
+  );
+*/
+
+// NOTE: here can have any number of epics
+export default createEpics({
+  {{ camelCase name }}Epic,
+});

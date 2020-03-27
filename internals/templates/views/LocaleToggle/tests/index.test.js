@@ -3,11 +3,12 @@ import { Provider } from 'react-redux';
 import { browserHistory } from 'react-router-dom';
 import { render } from 'react-testing-library';
 
-import configureStore from 'store';
-import { translationMessages } from 'i18n';
 import LocaleToggle, { mapDispatchToProps } from '../index';
 import { changeLocale } from '../../LanguageProvider/store/actions';
 import LanguageProvider from '../../LanguageProvider';
+
+import configureStore from '../../../store';
+import { translationMessages } from '../../../i18n';
 
 describe('<LocaleToggle />', () => {
   let store;
