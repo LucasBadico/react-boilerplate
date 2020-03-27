@@ -12,16 +12,16 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-import { useInjectReducer } from 'utils/injectReducer';
-import { useInjectEpic } from 'utils/injectEpic';
+import { useInjectReducer } from '../../utils/injectReducer';
+import { useInjectEpic } from '../../utils/injectEpic';
 import {
   makeSelectRepos,
   makeSelectLoading,
   makeSelectError,
-} from 'store/selectors';
-import { loadRepos } from 'store/actions';
-import H2 from 'components/H2';
-import ReposList from 'components/ReposList';
+} from '../../store/selectors';
+import { loadRepos } from '../../store/actions';
+import H2 from '../../components/H2';
+import ReposList from '../../components/ReposList';
 import AtPrefix from './components/AtPrefix';
 import CenteredSection from './components/CenteredSection';
 import Form from './components/Form';

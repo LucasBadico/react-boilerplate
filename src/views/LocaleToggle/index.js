@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
-import Toggle from 'components/Toggle';
+import Toggle from '../../components/Toggle';
 import Wrapper from './components/Wrapper';
 import messages from './translations';
 import { appLocales } from '../../i18n';

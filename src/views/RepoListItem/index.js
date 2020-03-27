@@ -11,7 +11,7 @@ import { createStructuredSelector } from 'reselect';
 import { FormattedNumber } from 'react-intl';
 
 import { makeSelectCurrentUser } from 'store/selectors';
-import ListItem from 'components/ListItem';
+import ListItem from '../../components/ListItem';
 import IssueIcon from './components/IssueIcon';
 import IssueLink from './components/IssueLink';
 import RepoLink from './components/RepoLink';

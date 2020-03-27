@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import NormalA from 'components/A';
+import NormalA from '../../../components/A';
 
 const IssueLink = styled(NormalA)`
   height: 100%;

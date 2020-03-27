@@ -1,7 +1,7 @@
 import createEpics from 'store/create-epics';
 import { ofType } from 'redux-observable';
 import { switchMap, map } from 'rxjs/operators';
-import { fetchData } from 'utils/fetch-data';
+import { fetchData } from '../../../utils/fetch-data';
 
 export const getRepos = (action$, state$) =>
   action$.pipe(
