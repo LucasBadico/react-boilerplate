@@ -15,16 +15,16 @@ process.stdout.write('Cleanup started...');
 
 // Reuse existing LanguageProvider and i18n tests
 shell.mv(
-  'view/views/LanguageProvider/tests',
+  'src/views/LanguageProvider/tests',
   'internals/templates/views/LanguageProvider',
 );
-shell.cp('view/tests/i18n.test.js', 'internals/templates/tests/i18n.test.js');
+shell.cp('src/tests/i18n.test.js', 'internals/templates/tests/i18n.test.js');
 
 // Cleanup components/
-shell.rm('-rf', 'view/components/*');
+shell.rm('-rf', 'src/components/*');
 
-// Handle containers/
-shell.rm('-rf', 'src/view');
+// Handle views/
+shell.rm('-rf', 'src/views');
 shell.mv('internals/templates/views', 'src');
 
 // Handle tests/
@@ -41,10 +41,10 @@ shell.mv('internals/templates/utils', 'src');
 // Replace the files in the root app/ folder
 shell.cp('internals/templates/app.js', 'src/app.js');
 shell.cp('internals/templates/global-styles.js', 'src/global-styles.js');
-shell.cp('internals/templates/i18n.js', 'src/i18n.js');
+shell.cp('internals/templates/i18n/index.js', 'src/i18n/index.js');
 shell.cp('internals/templates/index.html', 'src/index.html');
-shell.cp('internals/templates/reducers.js', 'src/reducers.js');
-shell.cp('internals/templates/configureStore.js', 'src/configureStore.js');
+shell.cp('internals/templates/store/reducers.js', 'src/store/reducers.js');
+shell.cp('internals/templates/store/index.js', 'src/store/index.js');
 
 // Remove the templates folder
 shell.rm('-rf', 'internals/templates');
