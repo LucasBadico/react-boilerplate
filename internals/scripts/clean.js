@@ -6,10 +6,11 @@ if (!shell.which('git')) {
   shell.exit(1);
 }
 
-if (!shell.test('-e', 'internals/templates')) {
-  shell.echo('The example is deleted already.');
+if (shell.test('-e', 'example-app')) {
+  shell.echo('The example-app already exist, clean already run.');
   shell.exit(1);
 }
+shell.cp('src/tests/i18n.test.js', 'internals/templates/tests/i18n.test.js');
 
 process.stdout.write('Cleanup started...');
 
@@ -18,7 +19,7 @@ shell.mv(
   'src/views/LanguageProvider/tests',
   'internals/templates/views/LanguageProvider',
 );
-shell.cp('src/tests/i18n.test.js', 'internals/templates/tests/i18n.test.js');
+shell.cp('-r', 'src', 'example-app');
 
 // Cleanup components/
 shell.rm('-rf', 'src/components/*');
@@ -52,12 +53,12 @@ shell.rm('-rf', 'internals/templates');
 addCheckMark();
 
 // Commit the changes
-if (
-  shell.exec('git add . --all && git commit -qm "Remove default example"')
-    .code !== 0
-) {
-  shell.echo('\nError: Git commit failed');
-  shell.exit(1);
-}
+// if (
+//   shell.exec('git add . --all && git commit -qm "Remove default example"')
+//     .code !== 0
+// ) {
+//   shell.echo('\nError: Git commit failed');
+//   shell.exit(1);
+// }
 
 shell.echo('\nCleanup done. Happy Coding!!!');
